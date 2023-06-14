@@ -1,0 +1,26 @@
+services:
+  apache:
+   image: httpd:bullseye
+   ports: 
+    - "80:80"
+   volumes:
+    - /home/user0/Docker/data/compose/segundo-projeto:/usr/local/apache2/htdocs
+   networks:
+    - minha-rede
+   
+  mysqldb:
+   image: mysql:8.0
+   environment:
+    MYSQL_ROOT_PASSWORD: "projeto123"
+    MYSQL_DATABASE: "projetodb"
+   ports:
+    - "3306:3306"
+   volumes:
+    - /home/user0/Docker/data/compose/segundo-projeto/database:/var/lib/mysql
+   networks:
+   - minha-rede
+  
+networks:
+  minha-rede:
+   driver: bridge
+ 
